@@ -149,6 +149,11 @@
                                               </div>
                                             </div>
                                           </div>
+                                          <form action="{{ route('colleges.toggle', $college->CollegeID) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-secondary">{{ $college->IsActive ? 'Deactivate' : 'Activate' }}</button>
+                                        </form>
                                         <form action="{{ route('colleges.destroy', $college->CollegeID) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this college?')">
                                             @csrf
                                             @method('DELETE')
