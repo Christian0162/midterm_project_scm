@@ -9,5 +9,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('colleges', CollegeController::class);
+Route::resource('college', CollegeController::class);
 Route::resource('departments', DepartmentController::class);
