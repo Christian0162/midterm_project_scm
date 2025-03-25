@@ -23,8 +23,7 @@ class CollegeController extends Controller
      */
     public function create()
     {
-        //
-        return view('colleges.create');
+
     }
 
     /**
@@ -51,8 +50,7 @@ class CollegeController extends Controller
      */
     public function show(College $college)
     {
-        //
-        return view('colleges.show', compact('college'));
+
     }
 
     /**
@@ -60,8 +58,7 @@ class CollegeController extends Controller
      */
     public function edit(College $college)
     {
-        //
-        return view('colleges.edit', compact('college'));
+
     }
 
     /**
