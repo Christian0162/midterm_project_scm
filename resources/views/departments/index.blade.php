@@ -136,7 +136,7 @@
                                           </div>
 
 
-                                          
+
                                           {{-- Edit --}}
                                           <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit">
                                             Edit
@@ -194,6 +194,8 @@
                                               </div>
                                             </div>
                                           </div>
+
+                                          
                                         <form action="{{ route('departments.destroy', $department->DepartmentID) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this department?')">
                                             @csrf
                                             @method('DELETE')
