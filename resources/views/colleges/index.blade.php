@@ -5,12 +5,12 @@
         <div class="col-md-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2>Colleges</h2>
-                {{-- add --}}
+                {{-- add college--}}
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
                     Add New College
                   </button>
 
-                  <!-- Modal -->
+                  <!-- Modal college -->
                   <div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
@@ -66,12 +66,12 @@
                                     <td>{{ $college->CollegeName }}</td>
                                     <td>{{ $college->CollegeCode }}</td>
                                     <td class="d-flex gap-2 justify-content-center">
-                                        {{-- view --}}
+                                        {{-- view  college--}}
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view">
                                             View
                                           </button>
 
-                                          <!-- Modal -->
+                                          <!-- Modal college-->
                                           <div class="modal fade" id="view" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                               <div class="modal-content">
@@ -106,12 +106,12 @@
                                             </div>
                                           </div>
 
-                                        {{-- edit --}}
+                                        {{-- edit college--}}
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit">
                                             Edit
                                           </button>
 
-                                          <!-- Modal -->
+                                          <!-- Modal college-->
                                           <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                               <div class="modal-content">
