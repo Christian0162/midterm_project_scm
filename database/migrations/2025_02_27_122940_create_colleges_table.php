@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('CollegeID');
             $table->string('CollegeName');
             $table->string('CollegeCode');
-            $table->boolean('IsActive')->default(true);
+            $table->boolean('IsActives')->default(true);
             $table->timestamps();
         });
     }
