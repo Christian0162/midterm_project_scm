@@ -5,6 +5,8 @@
         <div class="col-md-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2>Departments</h2>
+                
+                
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddNewDepartment">
                     Add New Department
                   </button>
@@ -84,6 +86,7 @@
                                     <td>{{ $department->college->CollegeName }}</td>
                                     <td class="d-flex gap-2 justify-content-center">
 
+
                                         {{-- View --}}
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#show">
                                             View
@@ -131,6 +134,8 @@
                                               </div>
                                             </div>
                                           </div>
+
+
 
                                           {{-- Edit --}}
                                           <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit">
@@ -189,6 +194,8 @@
                                               </div>
                                             </div>
                                           </div>
+
+                                          
                                         <form action="{{ route('departments.destroy', $department->DepartmentID) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this department?')">
                                             @csrf
                                             @method('DELETE')

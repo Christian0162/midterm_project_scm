@@ -149,6 +149,11 @@
                                               </div>
                                             </div>
                                           </div>
+                                          <form action="{{ route('colleges.toggle', $college->CollegeID) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-secondary">{{ $college->IsActive ? 'Deactivate' : 'Activate' }}</button>
+                                        </form>
                                         <form action="{{ route('colleges.destroy', $college->CollegeID) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this college?')">
                                             @csrf
                                             @method('DELETE')
@@ -167,4 +172,39 @@
             </div>
         </div>
     </div>
+    <h3 class="mt-4">Deleted Colleges</h3>
+<div class="card">
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>College Name</th>
+                    <th>College Code</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($deletedColleges as $college)
+                    <tr>
+                        <td>{{ $college->CollegeID }}</td>
+                        <td>{{ $college->CollegeName }}</td>
+                        <td>{{ $college->CollegeCode }}</td>
+                        <td>
+                            <form action="{{ route('colleges.restore', $college->CollegeID) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-success">Restore</button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4" class="text-center">No deleted colleges found</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
 @endsection
