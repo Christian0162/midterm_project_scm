@@ -79,7 +79,7 @@ class CollegeController extends Controller
                 Rule::unique('colleges', 'CollegeCode')->ignore($college->CollegeID, 'CollegeID')
             ],
         ]);
-        
+
         $college->update($validated);
 
         return redirect()->route('colleges.index')

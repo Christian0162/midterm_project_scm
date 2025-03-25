@@ -10,12 +10,12 @@ class College extends Model
     protected $primaryKey = 'CollegeID';
 
     protected $fillable = [
-        'CollegeName',
-        'CollegeCode',
-        'IsActive',
+        'CollegeNames',
+        'CollegeCodes',
+        'IsActives',
     ];
 
-    public function departments() 
+    public function departments()
     {
         return $this->hasMany(Department::class, 'CollegeID', 'CollegeID');
     }
