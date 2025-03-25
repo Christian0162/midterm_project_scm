@@ -86,6 +86,7 @@
                                     <td>{{ $department->college->CollegeName }}</td>
                                     <td class="d-flex gap-2 justify-content-center">
 
+                                        
                                         {{-- View --}}
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#show">
                                             View
