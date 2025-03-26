@@ -5,47 +5,9 @@
         <div class="col-md-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2>Colleges</h2>
-                {{-- add college--}}
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
                     Add New College
-                  </button>
-
-                  <!-- Modal college -->
-                  <div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Add New College</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <form action="{{ route('colleges.store') }}" method="POST">
-                        <div class="modal-body">
-                                @csrf
-                                <div class="mb-3">
-                                    <label for="CollegeName" class="form-label">College Name</label>
-                                    <input type="text" class="form-control @error('CollegeName') is-invalid @enderror" id="CollegeName" name="CollegeName" value="{{ old('CollegeName') }}" required>
-                                    @error('CollegeName')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="CollegeCode" class="form-label">College Code</label>
-                                    <input type="text" class="form-control @error('CollegeCode') is-invalid @enderror" id="CollegeCode" name="CollegeCode" value="{{ old('CollegeCode') }}" required>
-                                    @error('CollegeCode')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                        </div>
-
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                          <button type="submit" class="btn btn-primary">Save College</button>
-                        </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                </button>
             </div>
 
             <div class="card">
@@ -53,9 +15,9 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>College Name</th>
-                                <th>College Code</th>
+                                <th><a href="{{ route('colleges.index', ['sort' => 'CollegeID', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}">ID</a></th>
+                                <th><a href="{{ route('colleges.index', ['sort' => 'CollegeName', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}">College Name</a></th>
+                                <th><a href="{{ route('colleges.index', ['sort' => 'CollegeCode', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}">College Code</a></th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -66,90 +28,9 @@
                                     <td>{{ $college->CollegeName }}</td>
                                     <td>{{ $college->CollegeCode }}</td>
                                     <td class="d-flex gap-2 justify-content-center">
-                                        {{-- view  college--}}
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view">
-                                            View
-                                          </button>
-
-                                          <!-- Modal college-->
-                                          <div class="modal fade" id="view" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                              <div class="modal-content">
-                                                <div class="modal-header">
-                                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Add</h1>
-                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th style="width: 150px;">College ID:</th>
-                                                            <td>{{ $college->CollegeID }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>College Name:</th>
-                                                            <td>{{ $college->CollegeName }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>College Code:</th>
-                                                            <td>{{ $college->CollegeCode }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Status:</th>
-                                                            <td>{{ $college->IsActive ? 'Active' : 'Inactive' }}</td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                                <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                        {{-- edit college--}}
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit">
-                                            Edit
-                                          </button>
-
-                                          <!-- Modal college-->
-                                          <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                              <div class="modal-content">
-                                                <div class="modal-header">
-                                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Update</h1>
-                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form action="{{ route('colleges.update', $college->CollegeID) }}" method="POST">
-                                                        @csrf
-                                                        @method('PUT')
-
-                                                        <div class="mb-3">
-                                                            <label for="CollegeName" class="form-label">College Name</label>
-                                                            <input type="text" class="form-control @error('CollegeName') is-invalid @enderror" id="CollegeName" name="CollegeName" value="{{ old('CollegeName', $college->CollegeName) }}" required>
-                                                            @error('CollegeName')
-                                                                <div class="invalid-feedback">{{ $message }}</div>
-                                                            @enderror
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <label for="CollegeCode" class="form-label">College Code</label>
-                                                            <input type="text" class="form-control @error('CollegeCode') is-invalid @enderror" id="CollegeCode" name="CollegeCode" value="{{ old('CollegeCode', $college->CollegeCode) }}" required>
-                                                            @error('CollegeCode')
-                                                                <div class="invalid-feedback">{{ $message }}</div>
-                                                            @enderror
-                                                        </div>
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                  <button type="submit" class="btn btn-primary">Update College</button>
-                                                </form>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        <form action="{{ route('colleges.destroy', $college->CollegeID) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this college?')">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view{{ $college->CollegeID }}">View</button>
+                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit{{ $college->CollegeID }}">Edit</button>
+                                        <form action="{{ route('colleges.destroy', $college->CollegeID) }}" method="POST" onsubmit="return confirm('Are you sure?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -163,6 +44,7 @@
                             @endforelse
                         </tbody>
                     </table>
+                    {{ $colleges->appends(request()->query())->links() }}
                 </div>
             </div>
         </div>

@@ -11,12 +11,18 @@ class CollegeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $colleges = College::where('IsActive', true)->get();
+        $sort = $request->get('sort', 'CollegeID');
+        $direction = $request->get('direction', 'asc');
+
+        $colleges = College::where('IsActive', true)
+                            ->orderBy($sort, $direction)
+                            ->paginate(10);
+
         return view('colleges.index', compact('colleges'));
     }
+
 
     /**
      * Show the form for creating a new resource.
